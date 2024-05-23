@@ -70,6 +70,31 @@ function TabContent({ item }) {
     setLikes(likes + 1);
   }
 
+  function handleIncByThree() {
+    //setLikes(likes + 3);
+
+    // This will not increment by 3: stale state 
+    //setLikes(likes + 1);
+    //setLikes(likes + 1);
+    //setLikes(likes + 1);
+
+    setLikes((prevLikes) => prevLikes + 1);
+    setLikes((prevLikes) => prevLikes + 1);
+    setLikes((prevLikes) => prevLikes + 1);
+  }
+
+  function handleUndo() {
+    // these two will only cause one re-render
+    setLikes(0);
+    setShowDetails(true);
+  }
+
+  function handleUndoInTwoSecond() {
+    setTimeout(handleUndo, 2000);
+
+  }
+
+
   return (
     <div className="tab-content">
       <h4>{item.summary}</h4>
@@ -83,13 +108,13 @@ function TabContent({ item }) {
         <div className="hearts-counter">
           <span>{likes} ❤️</span>
           <button onClick={handleInc}>+</button>
-          <button>+++</button>
+          <button onClick={handleIncByThree}>+++</button>
         </div>
       </div>
 
       <div className="tab-undo">
-        <button>Undo</button>
-        <button>Undo in 2s</button>
+        <button onClick={handleUndo}>Undo</button>
+        <button onClick={handleUndoInTwoSecond}>Undo in 2s</button>
       </div>
     </div>
   );
