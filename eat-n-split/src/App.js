@@ -88,7 +88,7 @@ function App() {
       {showAddFriendForm ? `Close` : "Add New Friend"}
     </button >
 
-    {selectedFriend && <SplitBillForm selectedFriend={selectedFriend} onSplitBill={onSplitBill} />}
+    {selectedFriend && <SplitBillForm key={selectedFriend.id} selectedFriend={selectedFriend} onSplitBill={onSplitBill} />}
   </>
 }
 
